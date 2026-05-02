@@ -43,7 +43,7 @@ const Login = () => {
       await apiService.register(formData.email, formData.password, formData.full_name);
       setMessage("Registration successful! Check your email for OTP.");
       setView("verify_otp");
-    } catch (err) { handleApiError(err); } 
+    } catch (err) { handleApiError(err); }
     finally { setLoading(false); }
   };
 
@@ -54,7 +54,7 @@ const Login = () => {
       await apiService.verifyOtp(formData.email, formData.otp_code);
       setMessage("Account verified! You can now log in.");
       setView("login");
-    } catch (err) { handleApiError(err); } 
+    } catch (err) { handleApiError(err); }
     finally { setLoading(false); }
   };
 
@@ -65,7 +65,7 @@ const Login = () => {
       await apiService.forgotPassword(formData.email);
       setMessage("If the email exists, an OTP was sent.");
       setView("reset_password");
-    } catch (err) { handleApiError(err); } 
+    } catch (err) { handleApiError(err); }
     finally { setLoading(false); }
   };
 
@@ -76,7 +76,7 @@ const Login = () => {
       await apiService.resetPassword(formData.email, formData.otp_code, formData.password);
       setMessage("Password reset successful! You can now log in.");
       setView("login");
-    } catch (err) { handleApiError(err); } 
+    } catch (err) { handleApiError(err); }
     finally { setLoading(false); }
   };
 
@@ -91,7 +91,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="card fade-in login-card">
-        
+
         {view !== 'login' && view !== 'register' && (
           <button onClick={() => setView('login')} className="text-button" style={{ marginBottom: '1rem' }}>
             <ArrowLeft size={16} /> Back to login
@@ -110,32 +110,32 @@ const Login = () => {
         {error && <div style={{ background: '#fee2e2', color: '#b91c1c', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.875rem' }}>{error}</div>}
         {message && <div style={{ background: '#dcfce7', color: '#15803d', padding: '0.75rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.875rem' }}>{message}</div>}
 
-          <form autoComplete="off"
+        <form autoComplete="off"
           onSubmit={
             view === 'login' ? submitLogin :
-            view === 'register' ? submitRegister :
-            view === 'verify_otp' ? submitVerifyOTP :
-            view === 'forgot_password' ? submitForgotPassword :
-            submitResetPassword
-          } 
+              view === 'register' ? submitRegister :
+                view === 'verify_otp' ? submitVerifyOTP :
+                  view === 'forgot_password' ? submitForgotPassword :
+                    submitResetPassword
+          }
           className="login-form"
         >
           {view === 'register' && (
             <div>
               <label className="auth-label">Full Name</label>
-              <input type="text" autoComplete="off" className="input-field" required value={formData.full_name} onChange={e => setFormData({...formData, full_name: e.target.value})} />
+              <input type="text" autoComplete="off" className="input-field" required value={formData.full_name} onChange={e => setFormData({ ...formData, full_name: e.target.value })} />
             </div>
           )}
 
           <div>
             <label className="auth-label">Email Address</label>
-            <input type="email" autoComplete="off" className="input-field" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+            <input type="email" autoComplete="off" className="input-field" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
           </div>
 
           {(view === 'verify_otp' || view === 'reset_password') && (
             <div>
               <label className="auth-label">Enter OTP sent to Email</label>
-              <input type="text" autoComplete="off" className="input-field" required maxLength="6" value={formData.otp_code} onChange={e => setFormData({...formData, otp_code: e.target.value})} placeholder="123456" />
+              <input type="text" autoComplete="off" className="input-field" required maxLength="6" value={formData.otp_code} onChange={e => setFormData({ ...formData, otp_code: e.target.value })} placeholder="123456" />
             </div>
           )}
 
@@ -145,7 +145,7 @@ const Login = () => {
                 <label className="auth-label">{view === 'reset_password' ? 'New Password' : 'Password'}</label>
                 {view === 'login' && <button type="button" onClick={() => setView('forgot_password')} className="text-link-button">Forgot Password?</button>}
               </div>
-              <input type="password" autoComplete="new-password" className="input-field" required value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} />
+              <input type="password" autoComplete="new-password" className="input-field" required value={formData.password} onChange={e => setFormData({ ...formData, password: e.target.value })} />
             </div>
           )}
 
@@ -172,7 +172,7 @@ const Login = () => {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <a href={`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/auth/google/login`} className="btn btn-outline btn-block" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', justifyContent: 'center', padding: '0.75rem' }}>
+              <a href={`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/auth/google/login`} className="btn btn-outline btn-block" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', justifyContent: 'center', padding: '0.75rem' }}>
                 <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                   <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
