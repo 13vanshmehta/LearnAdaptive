@@ -37,16 +37,24 @@ This is the backend for the LearnAdaptive platform, an AI-powered learning syste
 3. **Configuration**:
    Create a `.env` file in the `backend` directory:
    ```env
-   MONGODB_URL=your_mongodb_url
-   SECRET_KEY=your_secret_key
+   MONGO_URI=mongodb://localhost:27017
+   SECRET_KEY=your_super_secret_key
    ALGORITHM=HS256
-   GOOGLE_CLIENT_ID=your_google_id
-   GOOGLE_CLIENT_SECRET=your_google_secret
-   SMTP_SERVER=your_smtp_server
+   ACCESS_TOKEN_EXPIRE_MINUTES=30
+   
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
+   
+   GROQ_API_KEY=your_groq_api_key
+   
+   SMTP_SERVER=smtp.gmail.com
    SMTP_PORT=587
-   SMTP_USERNAME=your_email
-   SMTP_PASSWORD=your_password
-   OPENAI_API_KEY=your_key
+   SMTP_EMAIL=your_email@gmail.com
+   SMTP_PASSWORD=your_app_password
+   
+   FRONTEND_URL=http://localhost:5173
+   ALLOWED_ORIGINS=http://localhost:5173,http://localhost:5000
    ```
 
 4. **Running the Server**:

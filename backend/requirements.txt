@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pymongo
+httpx
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+groq
