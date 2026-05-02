@@ -9,6 +9,9 @@ from database import get_db
 import httpx
 from fastapi.responses import RedirectResponse
 import schemas, auth, core_ai, mailer
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(title="LLM Learning System API")
 
@@ -134,14 +137,13 @@ def google_login():
 @app.get("/api/auth/google/callback")
 async def google_callback(code: str = None, error: str = None):
     if error:
-        return RedirectResponse(f"http://localhost:5173/login?error={error}")
+        return RedirectResponse(f"{FRONTEND_URL}/login?error={error}")
     
     if not code:
-        return RedirectResponse("http://localhost:5173/login?error=NoCodeProvided")
+        return RedirectResponse(f"{FRONTEND_URL}/login?error=NoCodeProvided")
 
     GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
     GOOGLE_CALLBACK_URL = os.getenv("GOOGLE_CALLBACK_URL", "http://localhost:5000/api/auth/google/callback")
-    FRONTEND_URL = "http://localhost:5173"
     
     token_url = "https://oauth2.googleapis.com/token"
     data = {
