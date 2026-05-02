@@ -1800,6 +1800,7 @@ html {
   }
 
   .mobile-nav-overlay {
+    display: block !important;
     position: fixed;
     inset: 0;
     background: rgba(15, 23, 42, 0.6);
@@ -1817,6 +1818,7 @@ html {
   }
 
   .mobile-nav-content {
+    display: flex !important;
     position: fixed;
     top: 0;
     right: 0;
@@ -1921,7 +1923,7 @@ html {
   }
 }
 
-.mobile-menu-btn {
+.mobile-menu-btn, .mobile-nav-overlay, .mobile-nav-content {
   display: none;
 }
 
