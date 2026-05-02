@@ -12,7 +12,7 @@ import schemas, auth, core_ai, mailer
 
 app = FastAPI(title="LLM Learning System API")
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5000,http://127.0.0.1:5000,https://learnadaptive.onrender.com").split(",")
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:5000,http://127.0.0.1:5000,https://learnadaptive.onrender.com,https://learn-adaptive-ai.vercel.app").split(",")
 
 app.add_middleware(
     CORSMiddleware,
